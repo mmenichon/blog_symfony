@@ -1,0 +1,25 @@
+{% extends"base.html.twig" %}
+{% block body %}
+    <div class="example-wrapper">
+        <br>
+        <h1 style="text-align: center">Ajouter une catégorie</h1>
+        <br>
+        <p>Ajoutez ici le titre et la description de la catégorie</p>
+        <br>
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.title, 'Titre de la catégorie : ') }}
+            <br>
+            {{ form_widget(form.title) }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form_label(form.description, 'Description de la catégorie : ') }}
+            <br>
+            {{ form_widget(form.description) }}
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Ajouter une catégorie</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

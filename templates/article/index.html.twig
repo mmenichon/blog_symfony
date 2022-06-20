@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title}}{% endblock %}
+
+{% block body %}
+    <br>
+    <h1 style="text-align: center">Articles</h1>
+    <br>
+    <div class="card mb-3">
+        {% for category in categories %}
+            <h4 class="card-header">{{ category.title }}</h4>
+        {% endfor %}
+        <div class="card-body">
+            <h1 class="card-title">{{ title }}</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><em>{{ content }}</em></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for comment in comments %}
+                <li class="list-group-item"><small>{{ comment.content }}</small></li>
+            {% endfor %}
+        </ul>
+        <div class="card-body">
+        </div>
+        <div class="card-footer text-muted">
+            {{ date|date('d-m-Y H:i:s') }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog Symfony{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1 style="text-align: center">Bienvenue sur mon blog</h1>
+        <br>
+        <h2 style="text-align: center">On a créé un blog sur Symfony pendant le stage !</h2>
+        <br>
+
+        <h3>Filtrer les articles par catégories :</h3>
+        {{ form(form) }}
+
+        <h3 style="text-align: center">Articles du blog</h3>
+        <br>
+        {% for article in articles %}
+            <div class="card border-secondary mb-3" style="max-width: 50rem;">
+                <div class="card-header">
+                    {% if ( is_granted('IS_AUTHENTICATED_FULLY')) %}
+                        <a class="btn btn-outline-dark" href="{{ path("editarticle", {"id": article.id}) }}">Modifier</a>
+                        <a class="btn btn-outline-dark" href="{{ path("deletearticle", {"id": article.id}) }}">Supprimer</a>
+                    {% endif %}
+                    <a class="btn btn-outline-info" href="{{ path("newcomment", {"id": article.id}) }}">Ajouter un commentaire</a>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <h6>{{ article.CreateAt|date('d-m-Y H:i:s') }}</h6>
+                    <p class="card-text"><em>{{ article.description }}</em></p>
+                    <a href="{{ path("article", {"id": article.id}) }}">Afficher l'article</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

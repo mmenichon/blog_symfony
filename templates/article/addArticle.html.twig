@@ -1,0 +1,29 @@
+{% extends"base.html.twig" %}
+{% block body %}
+    <div class="example-wrapper">
+        <br>
+        <h1 style="text-align: center">Ajouter un article</h1>
+        <br>
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.title, 'Titre de l\'article : ') }}
+            <br>
+            {{ form_widget(form.title) }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form_label(form.description, 'Contenu de l\'article :') }}
+            <br>
+            {{ form_widget(form.description) }}
+        </div>
+        <br>
+        <fieldset class="form-group">
+            {{ form_label(form.categories, 'Sélectionner une catégorie :') }}
+            <br>
+            {{ form_widget(form.categories) }}
+        </fieldset>
+        <br>
+        <button type="submit" class="btn btn-primary">Ajouter un article</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

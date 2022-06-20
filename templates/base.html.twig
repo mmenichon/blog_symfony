@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="stylesheet" href="https://bootswatch.com/5/journal/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BLOG</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                {% if ( is_granted('IS_AUTHENTICATED_FULLY')) %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_category') }}">Liste des catégories</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" href="{{ path('addcat') }}">Ajouter une catégorie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('newarticle') }}">Ajouter un article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">- Bonjour {{ app.user.username }} -</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <form class="d-flex" wtx-context="703BBC7A-21F1-4565-9266-892EC849BDFE">
+                {% if ( is_granted('IS_AUTHENTICATED_FULLY')) %}
+                    <a class="btn btn-info" href="{{ path("app_logout") }}">Déconnexion</a>
+                {% else %}
+                    <a class="btn btn-info" href="{{ path("app_register") }}">Inscription</a>
+                    <a  class="btn btn-info" href="{{ path("login") }}">Connexion</a>
+                {% endif %}
+                <input class="form-control me-sm-2" type="text" placeholder="Search" wtx-context="3477081C-182D-4181-A855-F7A301A918CE">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+</body>
+</html>
